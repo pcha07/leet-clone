@@ -21,6 +21,10 @@ const Signup: React.FC<SignupProps> = () => {
 		setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
 	};
 
+	useEffect(() => {
+		if (error) alert(error.message);
+	}, []);
+
 	const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		if (!inputs.email || !inputs.password || !inputs.displayName) return alert("Please fill all fields");
@@ -47,10 +51,6 @@ const Signup: React.FC<SignupProps> = () => {
 			toast.dismiss("loadingToast");
 		}
 	};
-
-	useEffect(() => {
-		if (error) alert(error.message);
-	}, []);
 
 	return (
 		<form className='space-y-6 px-6 pb-4' onSubmit={handleRegister}>
